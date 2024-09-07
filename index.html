@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Selector</title>
+    <style>
+        body {
+            background-color: #EEEEEE;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #CC6600;
+            margin-top: 20px;
+        }
+
+        .button-bar {
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #6699CC;
+            border: none;
+            color: #FFF;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #99CCFF;
+        }
+
+        #fileInput, #searchBox {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #DCDCDC;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        #searchBox {
+            margin-bottom: 20px;
+        }
+
+        #songForm {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #songList {
+            background-color: #CAE5FF;
+            border-radius: 5px;
+            padding: 20px;
+            min-height: 200px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        #outputContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #output {
+            background-color: #DCDCDC;
+            border-radius: 5px;
+            padding: 20px;
+            width: 100%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 10px;
+        }
+
+        #outputMessage {
+            margin-bottom: 10px;
+            font-style: italic;
+            color: #CC6600;
+        }
+
+        #copyButton {
+            background-color: #CC6600;
+        }
+
+        button[type="submit"] {
+            background-color: #CC6600;
+            padding: 15px 30px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #FF9933;
+        }
+    </style>
+</head>
+<body>
+<h1>Song Selector</h1>
+<input type="file" id="fileInput">
+
+<!-- Button bar -->
+<div class="button-bar">
+    <button id="sortTitleButton">Sort by Title</button>
+    <button id="sortArtistButton">Sort by Artist</button>
+    <!-- Add more buttons here as needed -->
+</div>
+
+<input type="text" id="searchBox" placeholder="Search songs...">
+
+<form id="songForm">
+    <div id="songList"></div>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="outputContainer">
+    <pre id="output"></pre>
+    <div id="outputMessage">The output should be DMed to FestivalBot</div>
+    <button id="copyButton">Copy to Clipboard</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    document.getElementById('copyButton').addEventListener('click', function() {
+        const outputText = document.getElementById('output').innerText;
+        const tempInput = document.createElement('textarea');
+        tempInput.value = outputText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Output copied to clipboard!');
+    });
+</script>
+<script src="app.js"></script>
+</body>
+</html>
