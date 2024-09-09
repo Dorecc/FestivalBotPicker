@@ -5,6 +5,7 @@ let sorted = "ARTIST";
 
 // Function to generate the checkbox list
 function generateCheckboxList(songs) {
+    console.log('Generating checkbox list...');
     const songList = document.getElementById('songList');
     songList.innerHTML = ''; // Clear any existing content
 
@@ -35,11 +36,13 @@ function generateCheckboxList(songs) {
 
 // Auto load JSON file if available in the same directory
 function loadJSONFile() {
+    console.log('Loading JSON file...');
     fetch('songList.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            console.log('Response:', response);
             return response.json();
         })
         .then(data => {
