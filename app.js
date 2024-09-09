@@ -33,7 +33,23 @@ function generateCheckboxList(songs) {
     });
 }
 
-// Function to split the list into strings of up to 95 characters
+// Auto load JSON file if available in the same directory
+function loadJSONFile() {
+    fetch('songList.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            songs = data;
+            generateCheckboxList(songs);
+        })
+        .catch(error => {
+            console.error('Error fetching JSON:', error);
+        });
+}
 
 document.getElementById('copyButton').addEventListener('click', () => {
         const outputText = document.getElementById('output').innerText;
@@ -106,3 +122,5 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         reader.readAsText(file);
     }
 });
+
+document.getElementById('DOMContentLoaded', loadJSONFile());

@@ -108,11 +108,21 @@
         button[type="submit"]:hover {
             background-color: #FF9933;
         }
+
+        p {
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        color: #333;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-left: 5px solid #CC6600;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
     </style>
 </head>
 <body>
 <h1>Song Selector</h1>
-<input type="file" id="fileInput">
 
 <!-- Button bar -->
 <div class="button-bar">
@@ -133,6 +143,9 @@
     <div id="outputMessage">The output should be DMed to FestivalBot</div>
     <button id="copyButton">Copy to Clipboard</button>
 </div>
+
+<p>If the above list is outdated you can use the bot command /get-songlist-json to receive an update date list of songs currently in the bot's database.<br>Use the below file upload prompt to refresh the list with the downloaded file.<br>You can also upload a random .json file and see the page break.</p>
+<input type="file" id="fileInput">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
