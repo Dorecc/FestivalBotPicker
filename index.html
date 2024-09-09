@@ -1,165 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Song Selector</title>
     <style>
-        body {
-            background-color: #EEEEEE;
-            color: #333;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      /* General Resets */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+      }
 
-        h1 {
-            color: #CC6600;
-            margin-top: 20px;
-        }
-
-        .button-bar {
-            margin: 20px 0;
-        }
-
-        button {
-            background-color: #6699CC;
-            border: none;
-            color: #FFF;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #99CCFF;
-        }
-
-        #fileInput, #searchBox {
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #DCDCDC;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        #searchBox {
-            margin-bottom: 20px;
-        }
-
-        #songForm {
-            width: 80%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #songList {
-            background-color: #CAE5FF;
-            border-radius: 5px;
-            padding: 20px;
-            min-height: 200px;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        #outputContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-            max-width: 600px;
-        }
-
-        #output {
-            background-color: #DCDCDC;
-            border-radius: 5px;
-            padding: 20px;
-            width: 100%;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin-bottom: 10px;
-        }
-
-        #outputMessage {
-            margin-bottom: 10px;
-            font-style: italic;
-            color: #CC6600;
-        }
-
-        #copyButton {
-            background-color: #CC6600;
-        }
-
-        button[type="submit"] {
-            background-color: #CC6600;
-            padding: 15px 30px;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #FF9933;
-        }
-
-        p {
-        font-family: 'Arial', sans-serif;
+      /* Body Styles */
+      body {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
         font-size: 14px;
-        color: #333;
-        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Flexbox Layouts */
+      #content {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Typography */
+      h1 {
+        color: #e67e22;
+        margin-top: 20px;
+        font-size: 2em;
+      }
+
+      p {
+        font-family: "Arial", sans-serif;
+        font-size: 14px;
+        color: #ecf0f1;
+        background-color: #34495e;
         padding: 10px;
-        border-left: 5px solid #CC6600;
+        border-left: 5px solid #e67e22;
         margin-top: 20px;
         border-radius: 5px;
-    }
+      }
+
+      .catchphrase {
+        font-size: 1.5em;
+        color: #e67e22;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-style: italic;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      /* Buttons */
+      button {
+        background-color: #3498db;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+      }
+
+      button[type="submit"] {
+        background-color: #e67e22;
+        padding: 15px 30px;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #d35400;
+      }
+
+      /* Forms and Inputs */
+      #fileInput,
+      #searchBox {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #34495e;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 400px;
+        background-color: #34495e;
+        color: #ecf0f1;
+      }
+
+      #searchBox {
+        margin-bottom: 20px;
+      }
+
+      #songForm {
+        width: 80%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #songForm button {
+        background-color: #e67e22;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        font-size: 14px;
+      }
+
+      #songForm button:hover {
+        background-color: #d35400;
+        transform: scale(1.05);
+      }
+
+      /* Containers */
+      #songList {
+        background-color: #34495e;
+        border-radius: 5px;
+        padding: 20px;
+        min-height: 200px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      #outputContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      #output {
+        background-color: #34495e;
+        border-radius: 5px;
+        padding: 20px;
+        width: 100%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        color: #ecf0f1;
+      }
+
+      #outputMessage {
+        margin-bottom: 10px;
+        font-style: italic;
+        color: #e67e22;
+      }
+
+      /* Layout and Footer */
+      .footer {
+        background-color: #34495e;
+        color: #ecf0f1;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        margin-top: auto;
+      }
+
+      /* Utility Classes */
+      .button-bar {
+        margin: 20px 0;
+        display: flex;
+        gap: 10px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+      }
     </style>
-</head>
-<body>
-<h1>Song Selector</h1>
+  </head>
 
-<!-- Button bar -->
-<div class="button-bar">
-    <button id="sortTitleButton">Sort by Title</button>
-    <button id="sortArtistButton">Sort by Artist</button>
-    <!-- Add more buttons here as needed -->
-</div>
+  <body>
+    <div id="content">
+      <h1>Song Selector</h1>
+      <div class="catchphrase">For all your song selecting needs</div>
 
-<input type="text" id="searchBox" placeholder="Search songs...">
+      <!-- Button bar -->
+      <div class="button-bar">
+        <button id="sortTitleButton">Sort by Title</button>
+        <button id="sortArtistButton">Sort by Artist</button>
+      </div>
 
-<form id="songForm">
-    <div id="songList"></div>
-    <button type="submit">Submit</button>
-</form>
+      <input type="text" id="searchBox" placeholder="Search songs..." />
 
-<div id="outputContainer">
-    <pre id="output"></pre>
-    <div id="outputMessage">The output should be DMed to FestivalBot</div>
-    <button id="copyButton">Copy to Clipboard</button>
-</div>
+      <form id="songForm">
+        <div id="songList"></div>
+        <div class="button-group">
+          <button type="submit">Submit</button>
+          <button id="copyButton">Copy to Clipboard</button>
+        </div>
+      </form>
 
-<p>If the above list is outdated you can use the bot command /get-songlist-json to receive an update date list of songs currently in the bot's database.<br>Use the below file upload prompt to refresh the list with the downloaded file.<br>You can also upload a random .json file and see the page break.</p>
-<input type="file" id="fileInput">
+      <div id="outputContainer">
+        <pre id="output"></pre>
+        <div id="outputMessage">The output should be DMed to FestivalBot</div>
+      </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    document.getElementById('copyButton').addEventListener('click', function() {
-        const outputText = document.getElementById('output').innerText;
-        const tempInput = document.createElement('textarea');
-        tempInput.value = outputText;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-        alert('Output copied to clipboard!');
-    });
-</script>
-<script src="app.js"></script>
-</body>
+      <p>
+        If the above list is outdated you can use the bot command
+        /get-songlist-json to receive an update date list of songs currently in
+        the bot's database.<br />Use the below file upload prompt to refresh the
+        list with the downloaded file.<br />You can also upload a random .json
+        file and see the page break.
+      </p>
+      <input type="file" id="fileInput" />
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+        document
+          .getElementById("copyButton")
+          .addEventListener("click", function () {
+            const outputText = document.getElementById("output").innerText;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = outputText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Output copied to clipboard!");
+          });
+      </script>
+    </div>
+
+    <footer>&copy; 2024 FestivalBot SongSelector. Version 0.9.0 beta</footer>
+    <script src="app.js"></script>
+  </body>
 </html>
